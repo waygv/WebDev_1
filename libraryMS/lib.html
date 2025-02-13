@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibManSys</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        h1{
+            text-align: center;
+        }
+        button{
+            width: 200px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="h1">Library Management System</h1>
+
+        <label for="add book here">add book: </label>
+        <input type="text" id="addB">
+        <button id="add"><h2>add book</h2></button>
+
+        <label for="delete book here">delete book: </label>
+        <input type="text" id="delB">
+        <button id="delete"><h2>delete book</h2></button>
+
+        <button id="show">Show Books</button>
+        <pre id="bookList"></pre> 
+
+    </div>
+    <script>
+       let books = [];
+       document.getElementById("add").onclick = function(){
+        let bookname = document.getElementById("addB").value;
+        if (bookname){
+            books.push(bookname);
+            document.getElementById("addB").value="";
+        }
+       }
+       document.getElementById("delete").onclick = function(){
+        let bookname = document.getElementById("delB").value;
+        if(bookname){
+            books = books.filter(book => book !== bookname)
+            document.getElementById("delB").value="";
+        }
+       }
+       document.getElementById("show").onclick = function(){
+        document.getElementById("bookList").textContent=JSON.stringify(books, null, 2);
+       }
+    </script>
+</body>
+</html>
